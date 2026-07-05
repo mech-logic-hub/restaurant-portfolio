@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web制作サンプル — 飲食店 LP テーマ一覧</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --card: #fff;
+      --text: #2c2825;
+      --muted: #6b635c;
+      --accent: #c45c26;
+      --border: #e5ddd3;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .lead { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+    .themes { display: grid; gap: 1rem; }
+    .theme-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: block;
+    }
+    .theme-card:hover {
+      box-shadow: 0 8px 24px rgba(44, 40, 37, 0.08);
+      transform: translateY(-2px);
+    }
+    .theme-card h2 { font-size: 1.15rem; margin-bottom: 0.35rem; }
+    .theme-card p { font-size: 0.9rem; color: var(--muted); }
+    .swatch {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .swatch span {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .note {
+      margin-top: 2.5rem;
+      padding: 1rem 1.25rem;
+      background: #fff8f0;
+      border-left: 3px solid var(--accent);
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-radius: 0 8px 8px 0;
+    }
+    .blocks {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .blocks ol { padding-left: 1.25rem; }
+    .blocks li { margin-bottom: 0.25rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="badge">Portfolio · Sample</span>
+    <h1>飲食店ランディングページ</h1>
+    <p class="lead">
+      小規模飲食店向けの 1 枚 LP サンプルです。同一構成（5 ブロック固定）で 3 つのビジュアルテーマを比較できます。
+    </p>
+
+    <div class="themes">
+      <a class="theme-card" href="warm/">
+        <h2>温かみ</h2>
+        <p>あたたかい色味・丸みのある UI。近所の食堂らしい安心感を前面に。</p>
+        <div class="swatch">
+          <span style="background:#f5e6d3"></span>
+          <span style="background:#c45c26"></span>
+          <span style="background:#5c4033"></span>
+        </div>
+      </a>
+
+      <a class="theme-card" href="wa-modern/">
+        <h2>和モダン</h2>
+        <p>余白と直線、和紙トーン。落ち着いた大人向けの居酒屋・食堂イメージ。</p>
+        <div class="swatch">
+          <span style="background:#f7f4ef"></span>
+          <span style="background:#1a1a1a"></span>
+          <span style="background:#8b7355"></span>
+        </div>
+      </a>
+
+      <a class="theme-card" href="machi-shokudo/">
+        <h2>町食堂</h2>
+        <p>看板・チョークボード風。ランチ定食の「町の食堂」らしさを強調。</p>
+        <div class="swatch">
+          <span style="background:#fffef8"></span>
+          <span style="background:#c62828"></span>
+          <span style="background:#263238"></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="blocks">
+      <strong>共通 5 ブロック</strong>
+      <ol>
+        <li>FV — 店名・キャッチ・料理写真・電話 CTA</li>
+        <li>こだわり — 店主メッセージ・店内写真</li>
+        <li>おすすめ — 定食 / 小皿 / ランチ（各価格帯）</li>
+        <li>店舗情報 — 営業時間・定休・住所・地図</li>
+        <li>CTA — 電話・地図・来店メッセージ</li>
+      </ol>
+    </div>
+
+    <p class="note">
+      デモ用の架空店舗「まちの灯食堂」のサンプルです。店名・住所・電話番号はすべて架空です。
+      実在の店舗・団体とは関係ありません。
+    </p>
+  </div>
+</body>
+</html>

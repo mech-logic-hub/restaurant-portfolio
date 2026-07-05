@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まちの灯食堂 | 駅南口の定食と小皿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --board: #263238;
+      --chalk: #fffef8;
+      --red: #c62828;
+      --yellow: #ffd54f;
+      --green: #558b2f;
+      --muted: #5d4037;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Zen Maru Gothic", sans-serif;
+      background: var(--chalk);
+      color: var(--board);
+      line-height: 1.7;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    .container { max-width: 480px; margin: 0 auto; }
+
+    /* [1] FV — 看板風 */
+    .hero {
+      background: var(--red);
+      color: var(--chalk);
+      padding: 0;
+      text-align: center;
+    }
+    .signboard {
+      padding: 2rem 1.25rem 1.5rem;
+      border-bottom: 6px solid var(--yellow);
+    }
+    .signboard-sub {
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: var(--yellow);
+      color: var(--board);
+      display: inline-block;
+      padding: 0.2rem 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .signboard h1 {
+      font-size: 2.1rem;
+      font-weight: 900;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+      line-height: 1.3;
+    }
+    .signboard-catch {
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    .hero-photo {
+      height: 200px;
+      background: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&q=80&auto=format&fit=crop") center/cover;
+      border-top: 4px solid var(--board);
+      border-bottom: 4px solid var(--board);
+    }
+    .hero-cta {
+      padding: 1.25rem;
+      background: var(--board);
+      display: grid;
+      gap: 0.6rem;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+    .btn-phone {
+      background: var(--yellow);
+      color: var(--board);
+      box-shadow: 0 4px 0 #c9a227;
+    }
+    .btn-phone:active { box-shadow: 0 2px 0 #c9a227; transform: translateY(2px); }
+    .btn-map {
+      background: transparent;
+      color: var(--chalk);
+      border: 2px dashed rgba(255,254,248,0.5);
+      font-size: 0.9rem;
+      padding: 0.75rem;
+    }
+
+    section { padding: 2rem 1.25rem; }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .section-title::before,
+    .section-title::after {
+      content: "—";
+      margin: 0 0.5rem;
+      color: var(--red);
+    }
+
+    /* [2] こだわり — チョークボード */
+    .kodawari {
+      background: var(--board);
+      color: var(--chalk);
+    }
+    .chalk-box {
+      border: 3px solid rgba(255,254,248,0.3);
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-size: 0.92rem;
+      line-height: 1.85;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 27px,
+        rgba(255,254,248,0.06) 27px,
+        rgba(255,254,248,0.06) 28px
+      );
+    }
+    .chalk-box p + p { margin-top: 1rem; }
+    .owner-name {
+      margin-top: 1rem;
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--yellow);
+    }
+    .kodawari-photo {
+      margin-top: 1.25rem;
+      border: 4px solid var(--chalk);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* [3] おすすめ — メニュー板 */
+    .menu { background: #fff8e7; }
+    .menu-board {
+      background: var(--chalk);
+      border: 4px solid var(--board);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .menu-board-header {
+      background: var(--green);
+      color: var(--chalk);
+      text-align: center;
+      padding: 0.5rem;
+      font-weight: 900;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+    .menu-item {
+      padding: 1rem 1.25rem;
+      border-bottom: 2px dotted var(--board);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-item h3 { font-size: 1rem; font-weight: 700; }
+    .menu-item p { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+    .menu-price {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--red);
+      white-space: nowrap;
+    }
+    .menu-cta { margin-top: 1.25rem; }
+    .menu-cta .btn-phone { width: 100%; border-radius: 6px; }
+
+    /* [4] 店舗情報 */
+    .info { background: var(--chalk); }
+    .info-card {
+      border: 3px solid var(--board);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .info-row {
+      display: flex;
+      border-bottom: 2px solid var(--board);
+      font-size: 0.88rem;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-label {
+      background: var(--red);
+      color: var(--chalk);
+      font-weight: 700;
+      padding: 0.75rem 1rem;
+      min-width: 4.5rem;
+      flex-shrink: 0;
+    }
+    .info-value { padding: 0.75rem 1rem; flex: 1; }
+    .map-wrap {
+      margin-top: 1.25rem;
+      border: 3px solid var(--board);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .map-wrap iframe { width: 100%; height: 200px; border: 0; }
+
+    /* [5] CTA */
+    .cta {
+      background: var(--red);
+      color: var(--chalk);
+      text-align: center;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+    .cta h2 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+    .cta p { font-size: 0.9rem; margin-bottom: 1.25rem; }
+    .cta .btn-phone {
+      width: 100%;
+      margin-bottom: 0.6rem;
+    }
+    .cta .btn-map {
+      width: 100%;
+      color: var(--chalk);
+      border-color: var(--chalk);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.7rem;
+      background: var(--board);
+      color: rgba(255,254,248,0.6);
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      padding: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: var(--chalk);
+    }
+  </style>
+</head>
+<body>
+  <a class="back-link" href="../">← テーマ一覧に戻る</a>
+  <div class="container">
+    <!-- [1] FV -->
+    <header class="hero">
+      <div class="signboard">
+        <span class="signboard-sub">駅南口 · 駅南口</span>
+        <h1>まちの灯食堂</h1>
+        <p class="signboard-catch">今日の定食と小皿、町の食堂へどうぞ</p>
+      </div>
+      <div class="hero-photo" role="img" aria-label="定食のイメージ写真"></div>
+      <div class="hero-cta">
+        <a class="btn btn-phone" href="tel:05012345678">📞 050-1234-5678</a>
+        <a class="btn btn-map" href="https://maps.google.com/?q=駅南口" target="_blank" rel="noopener">地図でアクセス</a>
+      </div>
+    </header>
+
+    <!-- [2] こだわり -->
+    <section class="kodawari">
+      <h2 class="section-title">店主のこだわり</h2>
+      <div class="chalk-box">
+        <p>駅南口の小さな食堂です。昼は日替わりの定食、夜は気軽な小皿とおつまみをご用意しています。</p>
+        <p>地元のお野菜をできるだけ使い、毎日少しずつ変わるおかずが、常連さんとの話のきっかけになっています。</p>
+        <p class="owner-name">— 店主 あかり</p>
+      </div>
+      <div class="kodawari-photo">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80&auto=format&fit=crop" alt="店内の様子（イメージ）" width="900" height="600">
+      </div>
+    </section>
+
+    <!-- [3] おすすめ -->
+    <section class="menu">
+      <h2 class="section-title">本日のおすすめ</h2>
+      <div class="menu-board">
+        <div class="menu-board-header">ランチ · 夜メニュー</div>
+        <article class="menu-item">
+          <div>
+            <h3>日替わり定食</h3>
+            <p>主菜・副菜2品・味噌汁・ごはん</p>
+          </div>
+          <span class="menu-price">¥780〜</span>
+        </article>
+        <article class="menu-item">
+          <div>
+            <h3>名物小皿 3種盛り</h3>
+            <p>夜のみ。季節の小鉢を3品</p>
+          </div>
+          <span class="menu-price">¥980</span>
+        </article>
+        <article class="menu-item">
+          <div>
+            <h3>ランチセット</h3>
+            <p>定食＋自家製ドリンク</p>
+          </div>
+          <span class="menu-price">¥880</span>
+        </article>
+      </div>
+      <div class="menu-cta">
+        <a class="btn btn-phone" href="tel:05012345678">📞 お問い合わせ・ご予約</a>
+      </div>
+    </section>
+
+    <!-- [4] 店舗情報 -->
+    <section class="info">
+      <h2 class="section-title">店舗情報</h2>
+      <div class="info-card">
+        <div class="info-row"><span class="info-label">住所</span><span class="info-value">〒000-0000<br>サンプル市駅南町1-2<br>（駅南口 徒歩3分）（サンプル）</span></div>
+        <div class="info-row"><span class="info-label">営業</span><span class="info-value">昼 11:30–14:00（L.O. 13:30）<br>夜 17:00–22:00（L.O. 21:30）</span></div>
+        <div class="info-row"><span class="info-label">定休</span><span class="info-value">毎週月曜日・第3火曜日</span></div>
+        <div class="info-row"><span class="info-label">席数</span><span class="info-value">カウンター6席・テーブル12席</span></div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          title="駅南口周辺の地図"
+          src="https://maps.google.com/maps?q=%E9%A7%85%E5%8D%97%E5%8F%A3&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <!-- [5] CTA -->
+    <section class="cta">
+      <h2>ご来店お待ちしています！</h2>
+      <p>お気軽にお電話ください。少人数のご予約も承ります。</p>
+      <a class="btn btn-phone" href="tel:05012345678">📞 050-1234-5678</a>
+      <a class="btn btn-map" href="https://maps.google.com/?q=駅南口" target="_blank" rel="noopener">Google マップでルートを見る</a>
+    </section>
+  </div>
+  <footer>まちの灯食堂 — サンプル用デモサイト</footer>
+</body>
+</html>
