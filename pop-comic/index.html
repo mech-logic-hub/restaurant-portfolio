@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まちの灯食堂 | ○○駅前の定食と小皿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #ffeb3b;
+      --red: #ff1744;
+      --blue: #2196f3;
+      --green: #00e676;
+      --black: #111;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Zen Maru Gothic", sans-serif;
+      background: var(--yellow);
+      color: var(--black);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    .container { max-width: 480px; margin: 0 auto; border: 6px solid var(--black); background: var(--white); }
+
+    /* [1] FV */
+    .hero { position: relative; }
+    .hero-banner {
+      background: var(--red);
+      color: var(--white);
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 900;
+      border-bottom: 4px solid var(--black);
+    }
+    .hero-inner { padding: 1.25rem; text-align: center; position: relative; }
+    .sfx {
+      position: absolute;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--red);
+      text-shadow: 2px 2px 0 var(--black);
+      transform: rotate(-12deg);
+    }
+    .sfx-1 { top: 0.5rem; left: 0.5rem; }
+    .sfx-2 { top: 0.5rem; right: 0.5rem; transform: rotate(8deg); color: var(--blue); }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-shadow: 3px 3px 0 var(--yellow);
+      margin: 1.5rem 0 0.5rem;
+      border: 4px solid var(--black);
+      padding: 0.5rem;
+      background: var(--white);
+      display: inline-block;
+    }
+    .hero-catch {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .hero-photo {
+      border: 4px solid var(--black);
+      margin-bottom: 1rem;
+    }
+    .hero-photo img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      font-size: 1.05rem;
+      font-weight: 900;
+      font-family: inherit;
+      text-decoration: none;
+      border: 4px solid var(--black);
+      box-shadow: 4px 4px 0 var(--black);
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--black); }
+    .btn-phone {
+      background: var(--red);
+      color: var(--white);
+    }
+    .btn-map {
+      margin-top: 0.75rem;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 0.9rem;
+      padding: 0.75rem;
+    }
+
+    section {
+      padding: 1.5rem 1.25rem;
+      border-top: 4px solid var(--black);
+    }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: var(--yellow);
+      border: 3px solid var(--black);
+      padding: 0.4rem;
+      display: inline-block;
+      width: 100%;
+    }
+
+    /* [2] こだわり */
+    .kodawari { background: #e3f2fd; }
+    .speech-bubble {
+      background: var(--white);
+      border: 3px solid var(--black);
+      border-radius: 16px;
+      padding: 1rem;
+      position: relative;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 2rem;
+      border: 8px solid transparent;
+      border-top-color: var(--black);
+    }
+    .speech-bubble p + p { margin-top: 0.65rem; }
+    .owner-name {
+      margin-top: 1.5rem;
+      text-align: right;
+      font-weight: 900;
+      color: var(--red);
+    }
+    .kodawari-photo {
+      margin-top: 1rem;
+      border: 4px solid var(--black);
+      box-shadow: 6px 6px 0 var(--green);
+    }
+
+    /* [3] おすすめ */
+    .menu { background: var(--white); }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem;
+      margin-bottom: 0.65rem;
+      border: 3px solid var(--black);
+      background: var(--yellow);
+      gap: 0.75rem;
+    }
+    .menu-item h3 { font-size: 1rem; font-weight: 900; }
+    .menu-item p { font-size: 0.75rem; font-weight: 700; }
+    .menu-price {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--red);
+      white-space: nowrap;
+      text-shadow: 1px 1px 0 var(--black);
+    }
+    .menu-cta { margin-top: 1rem; }
+    .menu-cta .btn-phone { width: 100%; background: var(--green); color: var(--black); }
+
+    /* [4] 店舗情報 */
+    .info { background: #fff9c4; }
+    .info-grid { font-size: 0.85rem; font-weight: 700; }
+    .info-row {
+      display: flex;
+      border: 2px solid var(--black);
+      margin-bottom: 0.5rem;
+    }
+    .info-label {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.5rem 0.75rem;
+      min-width: 4rem;
+      flex-shrink: 0;
+    }
+    .info-value { padding: 0.5rem 0.75rem; flex: 1; }
+    .map-wrap {
+      margin-top: 1rem;
+      border: 4px solid var(--black);
+    }
+    .map-wrap iframe { width: 100%; height: 180px; border: 0; }
+
+    /* [5] CTA */
+    .cta {
+      background: var(--red);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem 1.25rem 2.5rem;
+    }
+    .cta h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-shadow: 2px 2px 0 var(--black);
+      margin-bottom: 0.5rem;
+    }
+    .cta p { font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
+    .cta .btn-phone { width: 100%; background: var(--yellow); color: var(--black); margin-bottom: 0.75rem; }
+    .cta .btn-map { width: 100%; margin-top: 0; }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--black);
+      color: var(--white);
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      padding: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      background: var(--yellow);
+      border-bottom: 4px solid var(--black);
+    }
+  </style>
+</head>
+<body>
+  <a class="back-link" href="../">← テーマ一覧に戻る</a>
+  <div class="container">
+    <!-- [1] FV -->
+    <header class="hero">
+      <div class="hero-banner">○○駅前 · 定食と小皿 · OPEN!</div>
+      <div class="hero-inner">
+        <span class="sfx sfx-1">ガツン!</span>
+        <span class="sfx sfx-2">ウマい!</span>
+        <h1>まちの灯食堂</h1>
+        <p class="hero-catch">○○駅前、今日の定食と小皿</p>
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&q=80&auto=format&fit=crop" alt="定食のイメージ" width="900" height="675">
+        </div>
+        <a class="btn btn-phone" href="tel:05012345678">050-1234-5678</a>
+        <a class="btn btn-map" href="https://maps.google.com/?q=サンプル市駅前" target="_blank" rel="noopener">地図で GO!</a>
+      </div>
+    </header>
+
+    <!-- [2] こだわり -->
+    <section class="kodawari">
+      <h2 class="section-title">店主のこだわり</h2>
+      <div class="speech-bubble">
+        <p>○○駅前の小さな食堂です。昼は日替わりの定食、夜は気軽な小皿とおつまみをご用意しています。</p>
+        <p>地元のお野菜をできるだけ使い、毎日少しずつ変わるおかずが、常連さんとの話のきっかけになっています。</p>
+      </div>
+      <p class="owner-name">— 店主 あかり</p>
+      <div class="kodawari-photo">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80&auto=format&fit=crop" alt="店内の様子（イメージ）" width="900" height="600">
+      </div>
+    </section>
+
+    <!-- [3] おすすめ -->
+    <section class="menu">
+      <h2 class="section-title">おすすめメニュー</h2>
+      <article class="menu-item">
+        <div>
+          <h3>日替わり定食</h3>
+          <p>主菜・副菜2品・味噌汁・ごはん</p>
+        </div>
+        <span class="menu-price">¥780〜</span>
+      </article>
+      <article class="menu-item">
+        <div>
+          <h3>名物小皿 3種盛り</h3>
+          <p>夜のみ。季節の小鉢を3品</p>
+        </div>
+        <span class="menu-price">¥980</span>
+      </article>
+      <article class="menu-item">
+        <div>
+          <h3>ランチセット</h3>
+          <p>定食＋自家製ドリンク</p>
+        </div>
+        <span class="menu-price">¥880</span>
+      </article>
+      <div class="menu-cta">
+        <a class="btn btn-phone" href="tel:05012345678">電話する!</a>
+      </div>
+    </section>
+
+    <!-- [4] 店舗情報 -->
+    <section class="info">
+      <h2 class="section-title">店舗情報</h2>
+      <div class="info-grid">
+        <div class="info-row"><span class="info-label">住所</span><span class="info-value">〒000-0000 サンプル市駅前町1-2<br>（○○駅前 徒歩3分）（サンプル）</span></div>
+        <div class="info-row"><span class="info-label">営業</span><span class="info-value">昼 11:30–14:00（L.O. 13:30）<br>夜 17:00–22:00（L.O. 21:30）</span></div>
+        <div class="info-row"><span class="info-label">定休</span><span class="info-value">毎週月曜日・第3火曜日</span></div>
+        <div class="info-row"><span class="info-label">席数</span><span class="info-value">カウンター6席・テーブル12席</span></div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          title="○○駅前周辺の地図"
+          src="https://maps.google.com/maps?q=%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E5%B8%82%E9%A7%92%E5%89%8D&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <!-- [5] CTA -->
+    <section class="cta">
+      <h2>来店待ってるよ!</h2>
+      <p>お気軽にお電話ください。少人数のご予約も承ります。</p>
+      <a class="btn btn-phone" href="tel:05012345678">050-1234-5678</a>
+      <a class="btn btn-map" href="https://maps.google.com/?q=サンプル市駅前" target="_blank" rel="noopener">Google マップでルートを見る</a>
+    </section>
+  </div>
+  <footer>まちの灯食堂 — サンプル用デモサイト</footer>
+</body>
+</html>

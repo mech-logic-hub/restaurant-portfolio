@@ -27,7 +27,18 @@ jobs:
       - name: Verify site files
         run: |
           set -euo pipefail
-          for path in index.html warm/index.html wa-modern/index.html machi-shokudo/index.html; do
+          for path in \
+            index.html \
+            sumi-breath/index.html \
+            wa-modern/index.html \
+            tabelog-style/index.html \
+            warm/index.html \
+            machi-shokudo/index.html \
+            showa-retro/index.html \
+            garden-organic/index.html \
+            instagram-soft/index.html \
+            pop-comic/index.html \
+            neon-night/index.html; do
             test -f "$path"
           done
 

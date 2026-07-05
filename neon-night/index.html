@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まちの灯食堂 | ○○駅前の定食と小皿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --neon-pink: #ff2d95;
+      --neon-cyan: #00f0ff;
+      --neon-purple: #bf00ff;
+      --neon-yellow: #f0ff00;
+      --text: #e0e0e0;
+      --muted: #888;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    .container { max-width: 480px; margin: 0 auto; position: relative; }
+
+    @keyframes glow-pulse {
+      0%, 100% { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink); }
+      50% { text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink); }
+    }
+    @keyframes border-glow {
+      0%, 100% { box-shadow: 0 0 5px var(--neon-cyan), 0 0 15px var(--neon-cyan), inset 0 0 5px rgba(0,240,255,0.1); }
+      50% { box-shadow: 0 0 10px var(--neon-cyan), 0 0 30px var(--neon-cyan), inset 0 0 10px rgba(0,240,255,0.2); }
+    }
+
+    /* [1] FV */
+    .hero {
+      position: relative;
+      padding: 2.5rem 1.25rem 2rem;
+      text-align: center;
+      overflow: hidden;
+      border-bottom: 2px solid var(--neon-purple);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,45,149,0.05) 1px, transparent 1px),
+        linear-gradient(rgba(0,240,255,0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .hero-grid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(transparent, rgba(0,240,255,0.08));
+      transform: perspective(200px) rotateX(60deg);
+      transform-origin: bottom;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-label {
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 8px var(--neon-cyan);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: "Orbitron", sans-serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--neon-pink);
+      animation: glow-pulse 2s ease-in-out infinite;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+    .hero-catch {
+      font-size: 0.9rem;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 8px var(--neon-yellow);
+      margin-bottom: 1.25rem;
+    }
+    .hero-photo {
+      border: 2px solid var(--neon-cyan);
+      animation: border-glow 3s ease-in-out infinite;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .hero-photo img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      filter: saturate(1.3) contrast(1.1);
+    }
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(255,45,149,0.2));
+      pointer-events: none;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: "Orbitron", sans-serif;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: transparent;
+      color: var(--neon-pink);
+      border: 2px solid var(--neon-pink);
+      box-shadow: 0 0 10px var(--neon-pink), inset 0 0 10px rgba(255,45,149,0.1);
+    }
+    .btn-primary:hover {
+      background: rgba(255,45,149,0.15);
+      box-shadow: 0 0 20px var(--neon-pink), inset 0 0 20px rgba(255,45,149,0.2);
+    }
+    .btn-outline {
+      margin-top: 0.65rem;
+      background: transparent;
+      color: var(--neon-cyan);
+      border: 2px solid var(--neon-cyan);
+      box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 10px rgba(0,240,255,0.1);
+      font-size: 0.8rem;
+    }
+
+    section {
+      padding: 2rem 1.25rem;
+      border-bottom: 1px solid rgba(191,0,255,0.3);
+      position: relative;
+    }
+    .section-title {
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--neon-purple);
+      text-shadow: 0 0 10px var(--neon-purple);
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+    .section-title::before,
+    .section-title::after {
+      content: "◆";
+      margin: 0 0.5rem;
+      color: var(--neon-cyan);
+      font-size: 0.6rem;
+    }
+
+    /* [2] こだわり */
+    .kodawari-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 1rem;
+      border: 1px solid rgba(0,240,255,0.3);
+      background: rgba(0,240,255,0.03);
+    }
+    .kodawari-text p + p { margin-top: 0.75rem; }
+    .owner-name {
+      margin-top: 1rem;
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.75rem;
+      color: var(--neon-pink);
+      text-shadow: 0 0 6px var(--neon-pink);
+      text-align: right;
+    }
+    .kodawari-photo {
+      margin-top: 1.25rem;
+      border: 2px solid var(--neon-purple);
+      box-shadow: 0 0 15px rgba(191,0,255,0.3);
+    }
+    .kodawari-photo img { filter: saturate(1.2) brightness(0.9); }
+
+    /* [3] おすすめ */
+    .menu-list { display: grid; gap: 0.75rem; }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border: 1px solid rgba(255,45,149,0.4);
+      background: rgba(255,45,149,0.05);
+      gap: 1rem;
+    }
+    .menu-item h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 6px rgba(240,255,0,0.5);
+    }
+    .menu-item p { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+    .menu-price {
+      font-family: "Orbitron", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 8px var(--neon-cyan);
+      white-space: nowrap;
+    }
+    .menu-cta { margin-top: 1.25rem; }
+    .menu-cta .btn-primary { width: 100%; }
+
+    /* [4] 店舗情報 */
+    .info-list { font-size: 0.82rem; }
+    .info-row {
+      display: grid;
+      grid-template-columns: 4.5rem 1fr;
+      gap: 0.5rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid rgba(191,0,255,0.2);
+    }
+    .info-row dt {
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.65rem;
+      color: var(--neon-cyan);
+      letter-spacing: 0.05em;
+    }
+    .info-row dd { color: var(--muted); }
+    .map-wrap {
+      margin-top: 1.25rem;
+      border: 2px solid var(--neon-purple);
+      box-shadow: 0 0 20px rgba(191,0,255,0.2);
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 180px;
+      border: 0;
+      filter: invert(90%) hue-rotate(180deg) saturate(0.8);
+    }
+
+    /* [5] CTA */
+    .cta {
+      text-align: center;
+      padding-bottom: 3rem;
+      border-bottom: none;
+    }
+    .cta h2 {
+      font-family: "Orbitron", sans-serif;
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--neon-pink);
+      text-shadow: 0 0 15px var(--neon-pink);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+    .cta p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .cta .btn-primary { width: 100%; }
+    .cta .btn-outline { width: 100%; margin-top: 0.65rem; }
+
+    footer {
+      text-align: center;
+      padding: 1.25rem;
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      border-top: 1px solid rgba(191,0,255,0.2);
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      padding: 0.75rem;
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.65rem;
+      color: var(--neon-cyan);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+  <a class="back-link" href="../">← BACK</a>
+  <div class="container">
+    <!-- [1] FV -->
+    <header class="hero">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-label">○○駅前 · NIGHT DINING</p>
+        <h1>まちの灯食堂</h1>
+        <p class="hero-catch">○○駅前、今日の定食と小皿</p>
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1617093720253-ababc129e42c?w=900&q=80&auto=format&fit=crop" alt="定食のイメージ" width="900" height="563">
+        </div>
+        <a class="btn btn-primary" href="tel:05012345678">050-1234-5678</a>
+        <a class="btn btn-outline" href="https://maps.google.com/?q=サンプル市駅前" target="_blank" rel="noopener">MAP ACCESS</a>
+      </div>
+    </header>
+
+    <!-- [2] こだわり -->
+    <section class="kodawari">
+      <h2 class="section-title">KODAWARI</h2>
+      <div class="kodawari-text">
+        <p>○○駅前の小さな食堂です。昼は日替わりの定食、夜は気軽な小皿とおつまみをご用意しています。</p>
+        <p>地元のお野菜をできるだけ使い、毎日少しずつ変わるおかずが、常連さんとの話のきっかけになっています。</p>
+        <p class="owner-name">OWNER: AKARI</p>
+      </div>
+      <div class="kodawari-photo">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80&auto=format&fit=crop" alt="店内の様子（イメージ）" width="900" height="675">
+      </div>
+    </section>
+
+    <!-- [3] おすすめ -->
+    <section class="menu">
+      <h2 class="section-title">MENU</h2>
+      <div class="menu-list">
+        <article class="menu-item">
+          <div>
+            <h3>日替わり定食</h3>
+            <p>主菜・副菜2品・味噌汁・ごはん</p>
+          </div>
+          <span class="menu-price">¥780〜</span>
+        </article>
+        <article class="menu-item">
+          <div>
+            <h3>名物小皿 3種盛り</h3>
+            <p>夜のみ。季節の小鉢を3品</p>
+          </div>
+          <span class="menu-price">¥980</span>
+        </article>
+        <article class="menu-item">
+          <div>
+            <h3>ランチセット</h3>
+            <p>定食＋自家製ドリンク</p>
+          </div>
+          <span class="menu-price">¥880</span>
+        </article>
+      </div>
+      <div class="menu-cta">
+        <a class="btn btn-primary" href="tel:05012345678">CALL NOW</a>
+      </div>
+    </section>
+
+    <!-- [4] 店舗情報 -->
+    <section class="info">
+      <h2 class="section-title">ACCESS</h2>
+      <dl class="info-list">
+        <div class="info-row"><dt>ADDRESS</dt><dd>〒000-0000 サンプル市駅前町1-2<br>（○○駅前 徒歩3分）（サンプル）</dd></div>
+        <div class="info-row"><dt>HOURS</dt><dd>昼 11:30–14:00（L.O. 13:30）<br>夜 17:00–22:00（L.O. 21:30）</dd></div>
+        <div class="info-row"><dt>CLOSED</dt><dd>毎週月曜日・第3火曜日</dd></div>
+        <div class="info-row"><dt>SEATS</dt><dd>カウンター6席・テーブル12席</dd></div>
+      </dl>
+      <div class="map-wrap">
+        <iframe
+          title="○○駅前周辺の地図"
+          src="https://maps.google.com/maps?q=%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E5%B8%82%E9%A7%92%E5%89%8D&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <!-- [5] CTA -->
+    <section class="cta">
+      <h2>VISIT US</h2>
+      <p>お気軽にお電話ください。少人数のご予約も承ります。</p>
+      <a class="btn btn-primary" href="tel:05012345678">050-1234-5678</a>
+      <a class="btn btn-outline" href="https://maps.google.com/?q=サンプル市駅前" target="_blank" rel="noopener">Google マップでルートを見る</a>
+    </section>
+  </div>
+  <footer>まちの灯食堂 — SAMPLE DEMO</footer>
+</body>
+</html>
