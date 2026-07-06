@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -45,9 +45,28 @@ jobs:
             test -f "$path"
           done
 
+      - name: Verify Unsplash image URLs
+        run: |
+          set -euo pipefail
+          mapfile -t urls < <(grep -roh 'https://images.unsplash.com/[^"?]*[^"]*' --include='index.html' . | sort -u)
+          for url in "${urls[@]}"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+            if [ "$code" != "200" ]; then
+              echo "Broken image ($code): $url"
+              exit 1
+            fi
+          done
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Retry deploy if GitHub Pages is temporarily unavailable
+        if: steps.deployment.outcome == 'failure'
+        id: deployment_retry
+        uses: actions/deploy-pages@v4
