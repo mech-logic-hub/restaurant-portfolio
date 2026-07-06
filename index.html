@@ -24,215 +24,130 @@
       line-height: 1.7;
       min-height: 100vh;
     }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
-    .badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 0.25rem 0.75rem;
-      margin-bottom: 1rem;
-    }
-    h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .lead { color: var(--muted); margin-bottom: 1.25rem; font-size: 0.95rem; }
-    .axis {
-      margin-bottom: 2rem;
-      padding: 1rem 1.25rem;
-      background: linear-gradient(90deg, #f9f7f2 0%, #fff 30%, #fff8f0 60%, #1a1a1a 100%);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-    .axis strong { color: var(--text); }
-    .axis-bar {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 0.75rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.05em;
-    }
-    .axis-bar span:first-child { color: #6b6560; }
-    .axis-bar span:last-child { color: #ff2d95; font-weight: 700; }
-    .themes { display: grid; gap: 1rem; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1 { font-size: 1.65rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .lead { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+    .themes { display: grid; gap: 0.75rem; }
     .theme-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
       text-decoration: none;
       color: inherit;
-      transition: box-shadow 0.2s, transform 0.2s;
-      display: block;
-    }
-    .theme-card:hover {
-      box-shadow: 0 8px 24px rgba(44, 40, 37, 0.08);
-      transform: translateY(-2px);
-    }
-    .theme-num {
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 0.25rem;
-    }
-    .theme-card h2 { font-size: 1.15rem; margin-bottom: 0.35rem; }
-    .theme-card p { font-size: 0.9rem; color: var(--muted); }
-    .swatch {
       display: flex;
-      gap: 0.4rem;
-      margin-top: 0.75rem;
+      gap: 1rem;
+      align-items: baseline;
     }
-    .swatch span {
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.06);
+    .theme-card:hover { border-color: #c9bfb3; }
+    .theme-num {
+      font-size: 0.75rem;
+      color: var(--muted);
+      min-width: 1.5rem;
     }
+    .theme-card h2 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .theme-card p { font-size: 0.85rem; color: var(--muted); }
     .note {
       margin-top: 2.5rem;
-      padding: 1rem 1.25rem;
-      background: #fff8f0;
-      border-left: 3px solid var(--accent);
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
       font-size: 0.85rem;
       color: var(--muted);
-      border-radius: 0 8px 8px 0;
     }
     .blocks {
       margin-top: 2rem;
       font-size: 0.85rem;
       color: var(--muted);
     }
-    .blocks ol { padding-left: 1.25rem; }
+    .blocks ol { padding-left: 1.25rem; margin-top: 0.5rem; }
     .blocks li { margin-bottom: 0.25rem; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <span class="badge">Portfolio · Sample</span>
     <h1>飲食店ランディングページ</h1>
     <p class="lead">
-      小規模飲食店向けの 1 枚 LP サンプルです。同一構成（5 ブロック固定）で 10 のビジュアルテーマを比較できます。
+      架空店舗「まちの灯食堂」の LP を、同じ 5 ブロック構成のまま 10 パターンの見た目で並べたサンプルです。上から順に、落ち着いたトーンから装飾の多いトーンへ並んでいます。
     </p>
-
-    <div class="axis">
-      テーマは<strong>「静けさ・抑制・伝統」から「装飾・情報密度・デジタル感」</strong>へと並んでいます。上に行くほど余白と控えめな色、明朝体や和紙トーンが増え、下に行くほど原色・ネオン・太枠・情報カードなど装飾と視覚的ノイズが強まります。同じ店舗・同じ構成のまま、デザインの方向性だけを変えて比較できるよう設計しています。
-      <div class="axis-bar">
-        <span>↑ 静 · 抑制 · 伝統</span>
-        <span>装飾 · 情報密度 · デジタル ↓</span>
-      </div>
-    </div>
 
     <div class="themes">
       <a class="theme-card" href="sumi-breath/">
-        <p class="theme-num">01</p>
-        <h2>墨と余白</h2>
-        <p>墨・和紙・極少色・明朝・装飾ほぼなし。最も静かなテーマ。</p>
-        <div class="swatch">
-          <span style="background:#f9f7f2"></span>
-          <span style="background:#1c1c1c"></span>
-          <span style="background:#d4cfc6"></span>
+        <span class="theme-num">01</span>
+        <div>
+          <h2>墨と余白</h2>
+          <p>墨・和紙・明朝。装飾を抑えた静かなトーン。</p>
         </div>
       </a>
 
       <a class="theme-card" href="wa-modern/">
-        <p class="theme-num">02</p>
-        <h2>和モダン</h2>
-        <p>余白と直線、和紙トーン。落ち着いた大人向けの居酒屋・食堂イメージ。</p>
-        <div class="swatch">
-          <span style="background:#f7f4ef"></span>
-          <span style="background:#1a1a1a"></span>
-          <span style="background:#8b7355"></span>
+        <span class="theme-num">02</span>
+        <div>
+          <h2>和モダン</h2>
+          <p>余白と直線、和紙トーン。大人向けの食堂イメージ。</p>
         </div>
       </a>
 
       <a class="theme-card" href="tabelog-style/">
-        <p class="theme-num">03</p>
-        <h2>食べログ風</h2>
-        <p>白地・橙アクセント・評価表示風・情報カード型。情報密度が上がり始める。</p>
-        <div class="swatch">
-          <span style="background:#fff"></span>
-          <span style="background:#ff6600"></span>
-          <span style="background:#f5f5f5"></span>
+        <span class="theme-num">03</span>
+        <div>
+          <h2>食べログ風</h2>
+          <p>白地・橙アクセント。情報をカードで整理したレイアウト。</p>
         </div>
       </a>
 
       <a class="theme-card" href="warm/">
-        <p class="theme-num">04</p>
-        <h2>温かみ</h2>
-        <p>あたたかい色味・丸みのある UI。近所の食堂らしい安心感を前面に。</p>
-        <div class="swatch">
-          <span style="background:#f5e6d3"></span>
-          <span style="background:#c45c26"></span>
-          <span style="background:#5c4033"></span>
+        <span class="theme-num">04</span>
+        <div>
+          <h2>温かみ</h2>
+          <p>クリーム色・丸み UI。近所の食堂らしい安心感。</p>
         </div>
       </a>
 
       <a class="theme-card" href="machi-shokudo/">
-        <p class="theme-num">05</p>
-        <h2>町食堂</h2>
-        <p>看板・チョークボード風。ランチ定食の「町の食堂」らしさを強調。</p>
-        <div class="swatch">
-          <span style="background:#fffef8"></span>
-          <span style="background:#c62828"></span>
-          <span style="background:#263238"></span>
+        <span class="theme-num">05</span>
+        <div>
+          <h2>町食堂</h2>
+          <p>看板・チョークボード風。ランチ定食向けの町店トーン。</p>
         </div>
       </a>
 
       <a class="theme-card" href="showa-retro/">
-        <p class="theme-num">06</p>
-        <h2>昭和レトロ</h2>
-        <p>提灯・暗木・赤・懐旧居酒屋。ノスタルジックな装飾が加わる。</p>
-        <div class="swatch">
-          <span style="background:#2a1810"></span>
-          <span style="background:#c0392b"></span>
-          <span style="background:#f39c12"></span>
+        <span class="theme-num">06</span>
+        <div>
+          <h2>昭和レトロ</h2>
+          <p>提灯・暗木・赤。懐旧居酒屋のノスタルジー。</p>
         </div>
       </a>
 
       <a class="theme-card" href="garden-organic/">
-        <p class="theme-num">07</p>
-        <h2>ガーデン</h2>
-        <p>緑・丸フォント・ナチュラル・ブランチ感。やわらかい装飾。</p>
-        <div class="swatch">
-          <span style="background:#faf8f2"></span>
-          <span style="background:#4a7c59"></span>
-          <span style="background:#8fbc8f"></span>
+        <span class="theme-num">07</span>
+        <div>
+          <h2>ガーデン</h2>
+          <p>緑・丸フォント。ナチュラル・ブランチ寄り。</p>
         </div>
       </a>
 
       <a class="theme-card" href="instagram-soft/">
-        <p class="theme-num">08</p>
-        <h2>インスタ風</h2>
-        <p>パステルグラデ・ストーリー風丸枠・ハッシュタグ風。SNS 的なデジタル感。</p>
-        <div class="swatch">
-          <span style="background:#fce4ec"></span>
-          <span style="background:#e91e8c"></span>
-          <span style="background:#9c27b0"></span>
+        <span class="theme-num">08</span>
+        <div>
+          <h2>インスタ風</h2>
+          <p>パステル・ストーリー風 UI。SNS っぽい軽さ。</p>
         </div>
       </a>
 
       <a class="theme-card" href="pop-comic/">
-        <p class="theme-num">09</p>
-        <h2>ポップコミック</h2>
-        <p>太枠・原色・擬音・漫画風。10〜20 代向けの元気さと最大級の装飾。</p>
-        <div class="swatch">
-          <span style="background:#ffeb3b"></span>
-          <span style="background:#ff1744"></span>
-          <span style="background:#2196f3"></span>
+        <span class="theme-num">09</span>
+        <div>
+          <h2>ポップコミック</h2>
+          <p>太枠・原色・擬音。元気で装飾多め。</p>
         </div>
       </a>
 
       <a class="theme-card" href="neon-night/">
-        <p class="theme-num">10</p>
-        <h2>ネオン夜</h2>
-        <p>黒地・ネオン・グロー・最大装飾。夜の街のデジタル感を極限まで。</p>
-        <div class="swatch">
-          <span style="background:#0a0a0f"></span>
-          <span style="background:#ff2d95"></span>
-          <span style="background:#00f0ff"></span>
+        <span class="theme-num">10</span>
+        <div>
+          <h2>ネオン夜</h2>
+          <p>黒地・ネオン・グロー。夜の街のデジタル感。</p>
         </div>
       </a>
     </div>
@@ -249,8 +164,7 @@
     </div>
 
     <p class="note">
-      デモ用の架空店舗「まちの灯食堂」のサンプルです。店名・住所・電話番号はすべて架空です。
-      実在の店舗・団体とは関係ありません。
+      店名・住所・電話番号はすべて架空です。実在の店舗・団体とは関係ありません。
     </p>
   </div>
 </body>
